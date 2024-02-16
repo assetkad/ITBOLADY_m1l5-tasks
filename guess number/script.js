@@ -27,16 +27,20 @@ function checkGuess() {
 
   attempts++;
 
+  const range =
+    parseInt(document.getElementById('maxNumber').value) -
+    parseInt(document.getElementById('minNumber').value);
   const difference = Math.abs(secretNumber - guess);
+  const percentDifference = (difference / range) * 100;
   let message;
 
-  if (difference === 0) {
+  if (percentDifference === 0) {
     message = `Поздравляем! Вы угадали число ${secretNumber} за ${attempts} попыток.`;
-  } else if (difference <= 10) {
+  } else if (percentDifference <= 10) {
     message = 'Горячо!';
-  } else if (difference <= 20) {
+  } else if (percentDifference <= 20) {
     message = 'Тепло.';
-  } else if (difference <= 30) {
+  } else if (percentDifference <= 30) {
     message = 'Прохладно.';
   } else {
     message = 'Холодно.';
